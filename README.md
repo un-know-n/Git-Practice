@@ -35,7 +35,7 @@
 
 ### Branches 
 
-1. ==Creating a branch==
+1. Creating a branch
 
 
 - git branch(-v) branch-name (shows all the branches in rep / create the branch)
@@ -50,7 +50,7 @@ technically branch is just a link to one specific commit
 
 > **Note:** if we need to change branch from newest commit to old, then "git checkout" will change link in HEAD and return files in working directory to the oldest commit version in other branch
 
-2. ==Checkout with uncommited changes==
+2. Checkout with uncommited changes
 
 > **Note:** if change were uncommitted: 1)you can erase them "checkout -f"; 2)use "git stash (+pop - to return unsaved changes)", but if you do that in other branch, then it can make error
 
@@ -60,11 +60,11 @@ technically branch is just a link to one specific commit
 
 > **Note:** if files were the same in latest commits in other branches and you changed one of them, then tried to move to another branch - it will give u a message that file was modified and changes won't be erased
 
-3. ==Moving uncommited changes==
+3. Moving uncommited changes
 
 > **Note:** if u have to commit changes immediately, but u cant do it in main branch, then use "git checkout -b branch-name" and create a temporary branch where you'll save all the code and finish it later
 
-4. ==Moving branches "manually"==
+4. Moving branches "manually"
 
 > **Note:** It can be used when u've done a unnecessary commit and want to move it to another branch
 
@@ -76,14 +76,14 @@ branch to change place of master(main) branch) *)if u want to reset changes, the
 
 > **Interesting:** if u'll type "-B" and we already have that branch, then it'll move and relink on it 
 
-5. ==HEAD detached status==
+5. HEAD detached status
 
 > **Note:** U can use "git checkout 1234(code of the commit)" to move to the current commit instantly, that' when HEAD is detached. If u've commited smth in that state, it'll create an unnamed branch and it may be difficult to move to those commits in future, also Git can delete them in time, SO TO AVOID IT "git branch <`new-branch-name`> <`commit-code-in-head-detached-state`>"
 
 > **Note:** Or there is another way - you can move that commit to the top of selected branch(git cherry-pick)
 - git cherry-pick <`commit-code`>(it will move changes to the top of previously selected branch)
 
-6. ==Recovery of the previous file versions(only FILES, not entire PROJECT)==
+6. Recovery of the previous file versions(only FILES, not entire PROJECT)
 
 > **Note:** If u need to recover prev. file ver. to current commit - use git checkout(it automatically adds them into index also)
 - git checkout <`prev-commit-code`> <`recovery-path`> (ex: git checkout main index.html)
@@ -95,7 +95,7 @@ branch to change place of master(main) branch) *)if u want to reset changes, the
 Typing "git checkout -- master" says that master is a PATH
 - git checkout HEAD index.html
 
-7. ==Look through history and old files, symbols ~, ^, @, search c :/==
+7. Look through history and old files, symbols ~, ^, @, search c :/
 
 > **Note:** Use "git log" or "git log--oneline" to see the commits history, also "git log <`branch-name`> --oneline" If u want to see specific commit, then use "git show <`commit-code`>" or u can use "git show HEAD~" to see previous commit without remembering their codes. Number of '~' will show the lower commit u want to Usage of "git show HEAD~2 --quiet" will give short info on commit Also we can use '@' instead of 'HEAD'(In powershell use " '@' "), for example: git checkout @~ index.html
 
@@ -104,7 +104,7 @@ Typing "git checkout -- master" says that master is a PATH
 
 > **Note:** Also u can look for exact word to show the file: git show :/someFunc
 
-8. ==Merging branches using "fast-forward"==
+8. Merging branches using "fast-forward"
 
 > **Note:** To merge branches u need to relocate to the branch, to which u wanna merge another
 - git merge <`branch-to-merge-with`>
@@ -114,7 +114,7 @@ Typing "git checkout -- master" says that master is a PATH
 - git branch -f main ORIG_HEAD (In case u don't remember the code)
 - git checkout -B master fix (U can use that instead of "git merge")
 
-9. ==Branch deletion==
+9. Branch deletion
 
 > **Note:** If u have already merged branches, then u need to delete the previous one, use "git branch -d <`branch-name`>"
 - git branch -d fix
@@ -124,7 +124,7 @@ In case that deletion was an error, use "git branch <`deleted-branch-name`> <`de
 - git branch -D feature
 - git branch feature 1234
 
-10. ==History of branch switching(links log - reflog)(to see: cat .git/logs/HEAD(any other branch))==
+10. History of branch switching(links log - reflog)(to see: cat .git/logs/HEAD(any other branch))
 
 > **Note:** Reflogs are saved locally, on your machine only, they don't go to server
 
@@ -138,7 +138,7 @@ In case that deletion was an error, use "git branch <`deleted-branch-name`> <`de
 - git reflog --no-decorate
 - git checkout -(relink to prev branch)
 
-11. ==Deletion of the non-important changes==
+11. Deletion of the non-important changes
 
 > **Note:** These command do not affect on the untracked files:
 - git checkout -f
@@ -150,7 +150,7 @@ In case that deletion was an error, use "git branch <`deleted-branch-name`> <`de
 - git clean -x(plus files from .gitignore)
 - git clean -dxf(altogether with force)
 
-12. ==Hard reset, discard changes, commit deletion ==
+12. Hard reset, discard changes, commit deletion 
 
 > **Note:** Making full reset to prev. commit
 - git reset <`commit-to-reset-to`>
@@ -161,14 +161,14 @@ In case that deletion was an error, use "git branch <`deleted-branch-name`> <`de
 - git reset --hard <`commit-code`>
 - git reset --hard ORIG_HEAD
 
-13. ==Soft reset, changing and joining commits==
+13. Soft reset, changing and joining commits
 
 > **Note:** It doesn't affect on Index and Working directory(saves files from upper commit)
 - git reset --soft @~()
 - git commit -c ORIG_HEAD (Takes description from last commit)
 - git commit --amend(also usable, resets to the prev commit, commits new changes - 2 steps at a time instantly)
 
-14. ==Mixed reset, it's comparison==
+14. Mixed reset, it's comparison
 
 > **Comparison:** () - changes
 - work. dir + index + (curr. brnch) === reset --soft
@@ -185,7 +185,7 @@ In case that deletion was an error, use "git branch <`deleted-branch-name`> <`de
 
 ### Commits
 
-1. ==Commit(/branch) comparison==
+1. Commit(/branch) comparison
 
 - git diff <`from-commit-code`> <`to-commit-code`>
 - git diff master 23e4
@@ -198,7 +198,7 @@ In case that deletion was an error, use "git branch <`deleted-branch-name`> <`de
 - git diff --name-only master feature (files where changes are)
 - git diff --no-index path1 path2 (compares two absolutely different files)
 
-2. ==History output==
+2. History output
 
 > **Interesting:**
 - abbrev-commit (shorten the commit code)
@@ -213,7 +213,7 @@ In case that deletion was an error, use "git branch <`deleted-branch-name`> <`de
 - git log --pretty=format:'%C(yellow)%h %C(dim green)%ad %C(reset) | %C(cyan)%s%d %C(#667788)[%an]' --date=format:'%F %R'
 - git log -p (shows detailed history of all commits, adds diff to every commit)
 
-3. ==Commits range==
+3. Commits range
 
 - git log master (shows logs from master branch)
 - git log master feature --graph (shows three of commits with typed branches)
@@ -224,14 +224,14 @@ In case that deletion was an error, use "git branch <`deleted-branch-name`> <`de
 - git log feature.. --boundary (includes commit, on which branches have splitted)
 - git log master...feature --boundary --graph (master&feature&boundary commits)
 
-4. ==Files history==
+4. Files history
 
 - git log index.html (seeing logs of index.html, commits in which it participated)
 - git log -p script.js (seeing detailed changes in it)
 - git log -p --follow script.js (if file was renamed)
 - git log feature..master -- dir1 dir2 ...
 
-5. ==Search in history, filters for 'git log'==
+5. Search in history, filters for 'git log'
 
 - git log --grep Run <`branchname`> (shows commits where word 'Run' was used in the name of commit)
 - git log --grep Run --grep `sayHi` --all-match (commit with only name 'Run sayHi')
@@ -242,11 +242,11 @@ In case that deletion was an error, use "git branch <`deleted-branch-name`> <`de
 - git log -L '/^`function sayHi`/', '/^}/':script.js (shows the history of sayHi)
 - git log --before(--after) '2017-09-13'
 
-6. ==Usage of git blame==
+6. Usage of git blame
 
 - git blame <`path`> (shows us line-to-line code of the file and author of that code)
 
-7. ==Truly merge and conflicts solving==
+7. Truly merge and conflicts solving
 
 - git status (to check if there is smth to commit)
 - git diff --name-only main feature (which files are different)
@@ -262,7 +262,7 @@ In case that deletion was an error, use "git branch <`deleted-branch-name`> <`de
 - git add <`path`> (add files where u've solved the conflict)
 - git merge --continue (the same as "git commit")
 
-8. =="Merge" commit, further actions==
+8. "Merge" commit, further actions
 
 > **Note:** That commit has privileges: it has two parental commits from merging, also it shows differences in combined condensed diff(shows differences only in conflict files, how they were solved)
 
@@ -278,11 +278,11 @@ In case that deletion was an error, use "git branch <`deleted-branch-name`> <`de
 - git merge feature --log=2 (adds all the descriptions of the prev comms to the "merge" commit(current commit), limited by 2)
 - git log master --oneline --first-parent(shows history of master without merged branches)
 
-9. ==Merge cancelling, reverting==
+9. Merge cancelling, reverting
 
 > **Attention:** git reset --hard @~ (this wont help bcs u will move to the parent of branch from which u did the merge) If u have done something like that use "git reflog" & "git reset --hard @{n-steps}"
 
-10. ==Semantic troubles after merging and their solving==
+10. Semantic troubles after merging and their solving
 
 > **Note:** That happens when merge was "successful", but your prog. wont work because of semantic troubles, due to leaving in  branch only working commits(without bugs), we need to cancel merging and redo it again
 
@@ -290,18 +290,18 @@ In case that deletion was an error, use "git branch <`deleted-branch-name`> <`de
 - git merge <`branchname`> --no-commit
 - git merge --continue (after fixing semantic troubles)
 
-11. ==Useful trick, flag --no-ff==
+11. Useful trick, flag --no-ff
 
 > **Useful:**  this cancels fast-forward merging(it can be very hard to differ branches when bug is found)
 Use "git config merge.ff false" to do it globally(not necessary to write --no-ff)
 
 - git merge --no-ff <`branchname`>
 
-12. ==Creating commit from branch(merge --squash)==
+12. Creating commit from branch(merge --squash)
 
 - git merge --squash <`branchname`> (takes changes from the latest commit of specific branch and moves it to our branch, without merging the branches, it just adds it to working dir and index)
 
-13. ==Copying of the commits(git cherry-pick)==
+13. Copying of the commits(git cherry-pick)
 
 > **Note:** That command picks up the differences from the last commit and applies them to the needed branch. Use it from the branch to which you want to apply changes. If the error occured - do the same things when solving  merge problems
 
@@ -313,7 +313,7 @@ Use "git config merge.ff false" to do it globally(not necessary to write --no-ff
 - git reset --hard @~(n) (if you want to revert the changes)
 - git cherry-pick --no-commit (if you want to add something during copying)
 
-14. ==Commits moving (git rebase)==
+14. Commits moving (git rebase)
 
 > **Note:** That picks up your branch on moves it on top of another branch, also that picks up changes from the branch to which you are adding yours branch. Use that from the branch you want to move. If the error occured - do the same things when solving  merge problems
 
@@ -326,12 +326,12 @@ Use "git config merge.ff false" to do it globally(not necessary to write --no-ff
 - git show --quiet feature@{1} (see the old peak of the chosen branch, see if it is the right one)
 - git reset --hard feature@{1} (or use 'git reset --hard ORIG_HEAD')
 
-15. ==Comparison of rebase & merge==
+15. Comparison of rebase & merge
 
 > **Note:** See the video or read the articles
 Use the automatic test when rebasing the branch (git rebase -x '...' master --> it can help to run automatic tests) rebase - can make easier the history of the project, but can break a lot of commits, so u need to be very attentive,  but it can be very easy to take changes in that way
 
-16. ==Rebase with tag -x==
+16. Rebase with tag -x
 
 > **Remember:** when (grammar) error in code happened commit is already saved, so you need to correct mistake and redo that commit
 
@@ -339,7 +339,7 @@ Use the automatic test when rebasing the branch (git rebase -x '...' master --> 
 - git commit --amend --no-edit (to change the current commit with bug)
 - git rebase --continue (to finish the rebasing)
 
-17. ==Rebasing part of the branch (git rebase --onto)==
+17. Rebasing part of the branch (git rebase --onto)
 
 > **Note:** When u've created a branch in wrong place and want to rebase it to another branch, but u dont need to pick the whole branch, only part of it. Also u need to be on top of the branch, which u want to rebase.
 Be VERY attentive with that command, because u can move wrong branch by mistake
@@ -354,7 +354,7 @@ Be VERY attentive with that command, because u can move wrong branch by mistake
 - git cherry-pick master~2..master (picks up two commits from 'master' to 'feature' branch)
 - git branch -f master master~2 (dont forget to move the branch)
 
-18. ==Rebasing of the merges (--rebase-merges)==
+18. Rebasing of the merges (--rebase-merges)
 
 > **Note:** By default rebase mises the 'merging' commit and moves branches without it, to avoid it:
 (if mistake happened use "git reset --hard <`branch`>@{n-steps back}")
@@ -363,7 +363,7 @@ Be VERY attentive with that command, because u can move wrong branch by mistake
 
 > **Note:** Also if in 'merging' commit was an error during merging, it will occur again and u need to fix it(use the ability of git 'rerere')
 
-19. ==Interactive rebasing (rebase -i)==
+19. Interactive rebasing (rebase -i)
 
 > **Note:** IF rebase the whole branch - it will move to the top of another branch, but if you do the rebasing in borders of yours branch, then branch will stay on its current place
 
@@ -381,14 +381,14 @@ git config rebase.missingCommitsCheck warn/error
 
 - git rebase -i @~3 (allows us to rewrite the history in the current branch) VERY useful!!
 
-20. ==Fix the commit in the middle of the branch (autosquash)==
+20. Fix the commit in the middle of the branch (autosquash)
 
 git config --global rebase.autoSquash true
 
 - git commit --fixup=<`bad-commit-code`>
 - git rebase -i @~n-steps 
 
-21. ==Commits discarding (revert)==
+21. Commits discarding (revert)
 
 > **Note:** It discards the changes made in specific commit(reverts them) and creates another commit without those changes. U need to be on the branch, where u want to revert the commit, to use this commit
 If the error occured - do the same things when solving merge problems
@@ -396,7 +396,7 @@ If the error occured - do the same things when solving merge problems
 - git revert <`commit-code`>
 - git revert <`commit-code`>...<`commit-code-2`>(to select the range of commits, to revert the changes)
 
-22. ==Merging discard (revert)==
+22. Merging discard (revert)
 
 > **Attention:** if u are using that command, then in future u'll have problems with merging the branches, in which u've done the revert of 'merging' commit
 
@@ -409,7 +409,7 @@ To avoid the merge problem, use this:
 
 Only after picking one of those ways u can do the branches merging
 
-23. ==Repeat merging with 'git rebase'==
+23. Repeat merging with 'git rebase'
 
 > **Attention:** it will only rebase the commits, which main branch doesn't have as its 
 ancestors, to avoid it use 'git rebase --onto'
@@ -423,3 +423,58 @@ Great way to delete the connection with 'merging' commit - make the rebase to th
 
 - git rebase <`first-commit-in-branch`> --no-ff
 
+### Additional Git Info
+
+1. Tags in Git
+
+Allows us to use tag instead of commit-code
+
+- git tag <`tag-name`> <`commit-code`>
+- git tag v1.0.0 1234 (Call example: git show --quiet v1.0.0) or (creation of branch with tag: git branch v1.x v1.0.0)
+- git tag (shows all the tags)
+- git tag --contains <`commit-code`> (shows if there's any tag on the commit)
+- git tag -n (tags with messages)
+- git tag -n -l 'v1.1*' (tags with mask)
+- git tag -d <`tag-name`> (delete the tag)
+- git tag -a -m 'version 1.0.0' v1.0.0 <`commit-code`> (tag with anotation, shows who did the tag)
+
+2. Describe & archive
+
+- git describe (shows info about commit with tag or its heir)
+- git archive -o /tmp/<`file-name`>.zip HEAD (saves the archive of last commit in specific directory)
+
+3. 'Modern' diff
+
+> **Note:** For prog. languages do the next things ---> .gitattributes ---> *.html dif=html(or any other)
+
+- git diff --word-diff (shows which words were changed)
+- git diff --color-words (the same)
+
+4. ReReRe (automatic solving of the same conflicts) (REuse REcorded REsolution)
+
+> **Note:** It can be used when canceling rebase/merge with conflicts. When solve is recorded, rerere doesnt add it to index automatically,
+you need to do it on your own
+
+- git config rerere.enabled true (to activate that mode)
+- git config rerere.autoUpdate true (to add solved files to index automatically)
+- git rerere forget <`path`> (to abbandon old solving of the conflict, you need to use 'git checkout -merge <`path`>' before that)
+- git commit -a --no-edit (to continue the merging)
+- rm -rf .git/rr-cache (to forget all solvings)
+- <`path`>/rerere-train.sh --all (to enable the script of auto detecting the previous conflict solving)
+- <`path`>/rerere-train.sh feature@{n-steps} (to do it manually for specific commit)
+
+5. Garbage collection
+
+> **Main Rule:** if top commit is still alive - you can return the branch
+
+- git gc (to init the garbage collection)
+- git fsck --unreachable (to look for unreachable commits)
+- git filter-branch (to filter the commits or redo them at all) OR use "BFG" (outer utility)
+- git reflog expire --expire=now --all (to clean all reflogs)
+- git gc --prune=now (to clean all unreachable commits)
+
+6. Editor settings
+
+- git config --global --edit (to open the config file in the editor)
+- git config --global core.editor '<`path-to-editor`>' (check the net for different editors)
+- git config --global core.autocrlf (true/input/false) (solves the problem of stroke ending) (only to text files)
