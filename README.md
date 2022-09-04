@@ -478,3 +478,83 @@ you need to do it on your own
 - git config --global --edit (to open the config file in the editor)
 - git config --global core.editor '<`path-to-editor`>' (check the net for different editors)
 - git config --global core.autocrlf (true/input/false) (solves the problem of stroke ending) (only to text files)
+
+### Files ignoring (.gitignore)
+
+> **Note:** it is almost same notation as in RegExp
+
+- Thumbs.db (path/to/anywhere/Thumbs.db)
+- .DS_Store (any/folder/.DS_Store)
+- \*.log (any file with .log)
+- \*.py[co] (same as: *.pyc OR *.pyo)
+- \*.py? (anywhere/*.py<`any-char`>)
+- build/ (ignoring DIRECTORY, that can be anywhere) scripts/build will be included also
+
+#### Help of PATH-AWARE mode (looks from the root, not subfolder)
+
+- /build/ (only build, NOT scripts/build)
+- secret/key (NOT docs/secret/key) (same as: /secret/key)
+- doc/*.html (doc/file.html, NOT somewhere/doc/file.html)
+- \**/app/cache (shop/app/cache OR main/front/app/cache) (replaces any number of path segments)
+
+Example of discarding the ignoring:
+
+- .*
+- !.gitattributes
+- !.gitignore
+
+> **Attention:** doesn't work this, because all folder is unknown:
+- /install/
+- !install/packages.xml (won't work)
+
+> **Instead:** use this, because you're making every file invisible itself:
+- /install/*
+- !install/packages.xml (now everything is fine)
+
+Check the templates of the ignoring files
+
+- git check-ignore -v <`path`>
+- git check-ignore -v scripts/for/devs
+
+Files with ignore templates:
+
+- <`project`>/.../.gitignore (from the place it's located)
+- <`project`>/.git/info/exclude
+- 
+### Working in team using Git
+
+1. Local branch updating
+
+> **Attention:** `git pull` will create a merge with commits from remote repo, to avoid it use `git pull --rebase`
+
+- git pull (take changes from remote)
+- git fetch (to move the remote pointer to the latest commit if the branch was changed by other commits)
+- git merge origin/curr. branch (to make the merge commit to the pulled changes)
+
+2. SSH with remote repos
+
+Creation order:
+
+1)cd ~ (go to the root directory)
+2)mkdir .ssh & cd .ssh (create & go to the .ssh directory)
+3)ssh-keygen -0 (skip all when creating)
+4)cat id_rsa.pub (copy the ssh key)
+5)GitHub profile -> Settings -> SSH & GPG keys -> New SSH key -> paste the key
+6)ssh -T git@github.com (check if connection is established correctly)
+7)git remote set-url origin <`ssh-ver-of-repo-connection`>
+
+3. Fixing the typo in branch name
+
+- git push origin remot-branch:remote-branch (to fix the typo in branch name)
+- git push origin :remot-branch (delete the wrong branch)
+- git branch -m remote-branch (rename the local branch)
+
+4. Changes to the remote repo(making the pull request through GitHub)
+
+Make the fork from the commit to which you want to deliver changes and then do the pull request, which will show your changes that can accepted or rejected
+
+5. Many commits to one
+
+- git cherry -v master (to see the difference between master branch and current branch)
+- git cherry -v master | wc -l (the same, but numbers of diff. commits)
+- git rebase -i HEAD~n-of-commits (choose to squash all commits)
